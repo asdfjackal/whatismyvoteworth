@@ -1,3 +1,4 @@
+export default `
 state,electoral votes,turnout,population
 AL,9,2070000,3540000
 AK,3,302000,512000
@@ -50,3 +51,4 @@ WA,12,3170000,4820000
 WV,5,670000,1450000
 WI,10,3080000,4210000
 WY,3,251000,425000
+`;
