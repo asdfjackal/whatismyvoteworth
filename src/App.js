@@ -33,14 +33,42 @@ class App extends Component {
   }
 
   parseCSV = (err, output, year) => {
-    const data = output.slice(1).map((item) => {
+    let data = output.slice(1).map((item) => {
       return {
         'state': item[0],
         'votes': item[1],
         'turnout': item[2],
-        'population': item[3]
+        'population': item[3],
+        'turnoutRatio': (item[1]/item[2]),
+        'populationRatio': (item[1]/item[3]),
       }
     });
+    const minTurnoutRatio = data.reduce((accumulator, currentValue) => {
+      if(currentValue.turnoutRatio < accumulator){
+        return currentValue.turnoutRatio;
+      }else{
+        return accumulator;
+      }
+    }, Infinity);
+    const minPopulationRatio = data.reduce((accumulator, currentValue) => {
+      if(currentValue.populationRatio < accumulator){
+        return currentValue.populationRatio;
+      }else{
+        return accumulator;
+      }
+    }, Infinity);
+
+    data = data.map((item) => {
+      return {
+        'state': item.state,
+        'votes': item.votes,
+        'turnout': item.turnout,
+        'population': item.population,
+        'turnoutRatio': (item.turnoutRatio/minTurnoutRatio),
+        'populationRatio': (item.populationRatio/minPopulationRatio),
+      };
+    });
+
     const newState = {};
     newState['data' + year] = data;
 
