@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import parse from 'csv-parse';
 
+import RawDataTable from './components/RawDataTable';
+
 import './normalize.css';
 import './skeleton.css';
 
@@ -17,6 +19,8 @@ class App extends Component {
       data2016: undefined,
     }
 
+    console.log(csv2016)
+
     parse(csv2008, (err, output) => {
       this.parseCSV(err, output, 2008)
     })
@@ -29,7 +33,7 @@ class App extends Component {
   }
 
   parseCSV = (err, output, year) => {
-    const data = output.map((item) => {
+    const data = output.slice(1).map((item) => {
       return {
         'state': item[0],
         'votes': item[1],
@@ -38,7 +42,7 @@ class App extends Component {
       }
     });
     const newState = {};
-    newState[year] = data;
+    newState['data' + year] = data;
 
     this.setState(newState);
   }
@@ -48,11 +52,11 @@ class App extends Component {
       <div className="container">
         <h1>What is my vote worth?</h1>
         <h3>2016</h3>
-        <p>{this.state.data2016}</p>
+        <RawDataTable table={this.state.data2008} />
         <h3>2012</h3>
-        <p>{this.state.data2012}</p>
+        <RawDataTable table={this.state.data2012} />
         <h3>2008</h3>
-        <p>{this.state.data2008}</p>
+        <RawDataTable table={this.state.data2016} />
       </div>
     );
   }
