@@ -4,7 +4,7 @@ class RawDataTable extends Component{
   constructor(props){
     super(props);
     this.state = {
-      'show': false,
+      'show': true,
       'sortKey': 'votes',
       'sortAscending': true,
     }
@@ -54,12 +54,12 @@ class RawDataTable extends Component{
       );
     });
     return (
-      <div>
+      <div className="u-full-width">
         <a onClick={this.toggle}>Show/Hide</a>
         {
           this.state.show ?
           (
-            <table class="u-full-width">
+            <table className="u-full-width">
               <thead>
                 <tr>
                   <th>State</th>

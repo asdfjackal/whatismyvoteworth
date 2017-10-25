@@ -1,7 +1,13 @@
 import React, { Component } from 'react';
+import {
+  BrowserRouter as Router,
+  Route,
+  Link
+} from 'react-router-dom'
 import parse from 'csv-parse';
 
-import RawDataTable from './components/RawDataTable';
+import RawDataTable from './pages/RawDataTable';
+import Home from './pages/Home';
 
 import './normalize.css';
 import './skeleton.css';
@@ -18,8 +24,6 @@ class App extends Component {
       data2012: undefined,
       data2016: undefined,
     }
-
-    console.log(csv2016)
 
     parse(csv2008, (err, output) => {
       this.parseCSV(err, output, 2008)
@@ -77,15 +81,30 @@ class App extends Component {
 
   render() {
     return (
-      <div className="container">
-        <h1>What is my vote worth?</h1>
-        <h3>2016</h3>
-        <RawDataTable table={this.state.data2008} />
-        <h3>2012</h3>
-        <RawDataTable table={this.state.data2012} />
-        <h3>2008</h3>
-        <RawDataTable table={this.state.data2016} />
-      </div>
+      <Router>
+        <div className="container">
+          <h1>What is my vote worth?</h1>
+          <Route exact path="/" component={Home}/>
+          <Route path="/raw/2008" render={() => (
+            <div>
+              <h3>2008</h3>
+              <RawDataTable table={this.state.data2008} />
+            </div>
+          )} />
+          <Route path="/raw/2012" render={() => (
+            <div>
+              <h3>2012</h3>
+              <RawDataTable table={this.state.data2012} />
+            </div>
+          )} />
+          <Route path="/raw/2016" render={() => (
+            <div>
+              <h3>2016</h3>
+              <RawDataTable table={this.state.data2016} />
+            </div>
+          )} />
+        </div>
+      </Router>
     );
   }
 }
