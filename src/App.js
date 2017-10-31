@@ -8,6 +8,7 @@ import parse from 'csv-parse';
 
 import RawDataTable from './pages/RawDataTable';
 import Home from './pages/Home';
+import WorthForm from './pages/WorthForm';
 
 import './normalize.css';
 import './skeleton.css';
@@ -85,6 +86,7 @@ class App extends Component {
         <div className="container">
           <h1>What is my vote worth?</h1>
           <Route exact path="/" component={Home}/>
+          <Route path="/worth" component={WorthForm} />
           <Route path="/raw/2008" render={() => (
             <div>
               <h3>2008</h3>
