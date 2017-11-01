@@ -4,8 +4,8 @@ class WorthForm extends Component{
   constructor(props){
     super(props);
     this.state = {
-      'state': '',
-      'year': ''
+      'state': 'AL',
+      'year': '2008'
     }
   }
 
@@ -38,7 +38,7 @@ class WorthForm extends Component{
       <div>
         <div className="row">
           <div className="six columns">
-            <label for="stateInput">Registered State</label>
+            <label htmlFor="stateInput">Registered State</label>
             <select className="u-full-width" id="stateInput" value={this.state.state} onChange={this.updateState}>
               <option value="AL">AL</option>
               <option value="AK">AK</option>
@@ -94,7 +94,7 @@ class WorthForm extends Component{
             </select>
           </div>
           <div className="six columns">
-            <label for="yearInput">Election Year</label>
+            <label htmlFor="yearInput">Election Year</label>
             <select className="u-full-width" id="yearInput" value={this.state.year} onChange={this.updateYear}>
               <option value="2008">2008</option>
               <option value="2012">2012</option>
@@ -103,7 +103,7 @@ class WorthForm extends Component{
           </div>
         </div>
         <div className="row">
-          <button class="button button-primary u-pull-right" onClick={this.submit}>Submit</button>
+          <button className="button button-primary u-pull-right" onClick={this.submit}>Submit</button>
         </div>
       </div>
     )

@@ -8,7 +8,8 @@ import parse from 'csv-parse';
 
 import RawDataTable from './pages/RawDataTable';
 import Home from './pages/Home';
-import WorthForm from './pages/WorthForm';
+import WorthForm from './components/WorthForm';
+import Worth from './components/Worth';
 
 import './normalize.css';
 import './skeleton.css';
@@ -66,9 +67,9 @@ class App extends Component {
     data = data.map((item) => {
       return {
         'state': item.state,
-        'votes': item.votes,
-        'turnout': item.turnout,
-        'population': item.population,
+        'votes': Number(item.votes),
+        'turnout': Number(item.turnout),
+        'population': Number(item.population),
         'turnoutRatio': (item.turnoutRatio/minTurnoutRatio),
         'populationRatio': (item.populationRatio/minPopulationRatio),
       };
@@ -84,24 +85,32 @@ class App extends Component {
     return (
       <Router>
         <div className="container">
-          <h1>What is my vote worth?</h1>
+          <br />
+          <h2>What is my vote worth?</h2>
+          <Link to="/">About</Link>&nbsp;|&nbsp;
+          <Link to="/worth">Calculate My Vote's Worth</Link>&nbsp;|&nbsp;
+          <Link to="/resources">Resources</Link>
+          <hr />
           <Route exact path="/" component={Home}/>
           <Route path="/worth" component={WorthForm} />
+          <Route path="/worth/:state/:year" render={(props) => (
+            <Worth data={this.state['data' + props.match.params.year]} {...props}/>
+          )} />
           <Route path="/raw/2008" render={() => (
             <div>
-              <h3>2008</h3>
+              <h4>2008</h4>
               <RawDataTable table={this.state.data2008} />
             </div>
           )} />
           <Route path="/raw/2012" render={() => (
             <div>
-              <h3>2012</h3>
+              <h4>2012</h4>
               <RawDataTable table={this.state.data2012} />
             </div>
           )} />
           <Route path="/raw/2016" render={() => (
             <div>
-              <h3>2016</h3>
+              <h4>2016</h4>
               <RawDataTable table={this.state.data2016} />
             </div>
           )} />
