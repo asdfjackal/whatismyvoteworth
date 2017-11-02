@@ -92,10 +92,10 @@ class App extends Component {
           <Link to="/resources">Resources</Link>
           <hr />
           <Route exact path="/" component={Home}/>
-          <Route path="/worth" component={WorthForm} />
           <Route path="/worth/:state/:year" render={(props) => (
             <Worth data={this.state['data' + props.match.params.year]} {...props}/>
           )} />
+          <Route path="/worth" component={WorthForm} />
           <Route path="/raw/2008" render={() => (
             <div>
               <h4>2008</h4>

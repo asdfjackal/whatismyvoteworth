@@ -36,6 +36,7 @@ class WorthForm extends Component{
   render(){
     return(
       <div>
+        <h5>Calculate what your vote is worth:</h5>
         <div className="row">
           <div className="six columns">
             <label htmlFor="stateInput">Registered State</label>
