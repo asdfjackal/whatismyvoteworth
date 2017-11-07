@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import {
-  BrowserRouter as Router,
   Route,
   Link
 } from 'react-router-dom'
@@ -84,40 +83,38 @@ class App extends Component {
 
   render() {
     return (
-      <Router>
-        <div className="container">
-          <br />
-          <h2>What is my vote worth?</h2>
-          <Link to="/">About</Link>&nbsp;|&nbsp;
-          <Link to="/worth">Calculate My Vote's Worth</Link>&nbsp;|&nbsp;
-          <Link to="/resources">Resources</Link>
-          <hr />
-          <Route exact path="/" component={Home}/>
-          <Route path="/worth/:state/:year" render={(props) => (
-            <Worth data={this.state['data' + props.match.params.year]} {...props}/>
-          )} />
-          <Route path="/worth" component={WorthForm} />
-          <Route path="/resources" component={Resources} />
-          <Route path="/raw/2008" render={() => (
-            <div>
-              <h4>2008</h4>
-              <RawDataTable table={this.state.data2008} />
-            </div>
-          )} />
-          <Route path="/raw/2012" render={() => (
-            <div>
-              <h4>2012</h4>
-              <RawDataTable table={this.state.data2012} />
-            </div>
-          )} />
-          <Route path="/raw/2016" render={() => (
-            <div>
-              <h4>2016</h4>
-              <RawDataTable table={this.state.data2016} />
-            </div>
-          )} />
-        </div>
-      </Router>
+      <div className="container">
+        <br />
+        <h2>What is my vote worth?</h2>
+        <Link to="/">About</Link>&nbsp;|&nbsp;
+        <Link to="/worth">Calculate My Vote's Worth</Link>&nbsp;|&nbsp;
+        <Link to="/resources">Resources</Link>
+        <hr />
+        <Route exact path="/" component={Home}/>
+        <Route path="/worth/:state/:year" render={(props) => (
+          <Worth data={this.state['data' + props.match.params.year]} {...props}/>
+        )} />
+        <Route path="/worth" component={WorthForm} />
+        <Route path="/resources" component={Resources} />
+        <Route path="/raw/2008" render={() => (
+          <div>
+            <h4>2008</h4>
+            <RawDataTable table={this.state.data2008} />
+          </div>
+        )} />
+        <Route path="/raw/2012" render={() => (
+          <div>
+            <h4>2012</h4>
+            <RawDataTable table={this.state.data2012} />
+          </div>
+        )} />
+        <Route path="/raw/2016" render={() => (
+          <div>
+            <h4>2016</h4>
+            <RawDataTable table={this.state.data2016} />
+          </div>
+        )} />
+      </div>
     );
   }
 }
