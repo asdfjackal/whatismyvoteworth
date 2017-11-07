@@ -8,6 +8,7 @@ import parse from 'csv-parse';
 
 import RawDataTable from './pages/RawDataTable';
 import Home from './pages/Home';
+import Resources from './pages/Resources';
 import WorthForm from './components/WorthForm';
 import Worth from './components/Worth';
 
@@ -96,6 +97,7 @@ class App extends Component {
             <Worth data={this.state['data' + props.match.params.year]} {...props}/>
           )} />
           <Route path="/worth" component={WorthForm} />
+          <Route path="/resources" component={Resources} />
           <Route path="/raw/2008" render={() => (
             <div>
               <h4>2008</h4>
